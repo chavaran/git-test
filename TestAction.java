@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-
+@Service
 public class TestAction extends BaseDispatchAction {
 	private static final Logger logger = Logger.getLogger(VaultQueueAction.class);
 
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(DealsForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String accessCheckViolated = (String) request.getAttribute(AppConstants.ACCESS_VIOLATED);
 		PrintWriter out = response.getWriter();
 		if (accessCheckViolated != null && accessCheckViolated.equalsIgnoreCase(AppConstants.YES)) {
@@ -27,7 +27,7 @@ public class TestAction extends BaseDispatchAction {
 				throw new Exception("static.userfunction.accessviolation");
 			}
 		}
-		return super.execute(mapping, form, request, response);
+		return super.execute(request, response);
 	}
 
 }
